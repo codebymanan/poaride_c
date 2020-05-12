@@ -1,0 +1,59 @@
+<ion-header class="bg-transparent">
+	<ion-navbar>
+		<ion-title> {{"sign_in" | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="bg-background-img">
+	<div class="logo">
+		<img src="assets/imgs/logo.png" alt="logo">
+	</div>
+</ion-content>
+<ion-footer no-border>
+	<div class="bg-white login">
+		<div class="">
+			<ion-list class="form">
+				<ion-item (click)="focusEmail()">
+					<ion-label>{{"email" | translate}}</ion-label>
+					<ion-input #inputemail type="email" [(ngModel)]="signInRequest.email" text-end></ion-input>
+				</ion-item>
+				<ion-item (click)="focusPassword()">
+					<ion-label>{{"password" | translate}}</ion-label>
+					<ion-input #inputpassword type="password" [(ngModel)]="signInRequest.password" text-end></ion-input>
+				</ion-item>
+			</ion-list>
+			<button ion-button full class="bg-theme text-white btn rounded" (click)="requestSignIn()">
+				{{"login" | translate}}
+			</button>
+			<ion-row style="padding-top: 8px;">
+				<ion-col (click)="signup()">
+					<small>
+						{{"new_user" | translate}}
+						<strong class="text-theme">{{"signup" | translate}}</strong>
+					</small>
+				</ion-col>
+				<ion-col text-end (click)="passwordRecovery()">
+					<small>
+						{{"forgot" | translate}}
+						<strong class="text-theme">{{"password" | translate}}?</strong>
+					</small>
+				</ion-col>
+			</ion-row>
+			<p text-center class="option-login"><span>{{"or_continue" | translate}}</span></p>
+			<ion-row>
+				<ion-col col-6>
+					<button ion-button full class="bg-fb  text-white btn rounded small" (click)="signInFacebook()">
+						<img src="assets/imgs/fb_white.png">
+						<span>Facebook</span>
+					</button>
+				</ion-col>
+				<ion-col col-6>
+					<button ion-button full class="bg-white text-dark btn rounded small" (click)="signInGoogle()">
+						<img src="assets/imgs/google.png">
+						<span>Google&nbsp;&nbsp;</span>
+					</button>
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
+</ion-footer>

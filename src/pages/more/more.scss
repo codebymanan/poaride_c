@@ -1,0 +1,157 @@
+page-more {
+	.header .toolbar .title .toolbar-title {
+		display: block;
+		align-items: center;
+	}
+
+	.list {
+		margin-bottom: 5px;
+
+		&.profile {
+			.item {
+				h2 {
+					ion-icon {
+						color: #b9b9b9;
+
+						&.text-yellow {
+							color: $yellow-color !important;
+						}
+					}
+				}
+			}
+
+			p {
+				margin: 0 -10px;
+				color: $text-light !important;
+				font-weight: 400;
+				font-size: 1rem;
+
+				span {
+					&.rating_icons {
+						margin: 0 10px;
+
+						ion-icon {
+							margin-left: 5px;
+							font-size: 1.4rem;
+							margin: 0;
+							color: $text-light;
+
+							&.text-yellow {
+								color: $yellow-color;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ion-item {
+			padding: 20px !important;
+			margin-bottom: 5px !important;
+
+			ion-avatar {
+				min-width: 80px !important;
+				min-height: 80px !important;
+				margin: 0 !important;
+				margin-right: 20px !important;
+
+				img {
+					min-width: 80px !important;
+					min-height: 80px !important;
+				}
+			}
+
+			.label {
+				font-weight: 500 !important;
+
+			}
+
+			.item-inner {
+				border-bottom: none !important;
+				padding: 0 !important;
+
+			}
+
+			.name {
+				width: calc(100% - 95px);
+				display: inline-block;
+
+				h2 {
+					font-size: 1.35rem;
+					font-weight: 600;
+					margin-bottom: 6px;
+
+					small {
+						margin-left: 5px;
+						color: $text-light;
+					}
+				}
+			}
+
+			.more {
+				width: 80px;
+				display: inline-block;
+
+				h2 {
+					font-size: 1.1rem;
+					color: $yellow-color;
+					margin-bottom: 6px;
+				}
+
+				p {
+					font-size: 1rem;
+					color: $text-light !important;
+					font-weight: 500;
+				}
+			}
+
+			p {
+				font-size: 1rem !important;
+				color: $theme-color !important;
+				font-weight: 400
+			}
+		}
+	}
+
+
+	button {
+
+		.item-inner {
+			font-size: 1.3rem;
+			font-weight: 500;
+
+			.label {
+				margin: 0;
+				font-size: 1.35rem;
+				font-weight: 600;
+				color: $text-dark;
+
+			}
+		}
+
+		ion-avatar {
+			position: relative;
+			text-align: center;
+			width: 60px;
+
+			ion-icon {
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				color: $theme-color
+			}
+		}
+	}
+
+	h2 {
+		strong {
+			font-weight: 600;
+			font-size: 1.4rem;
+		}
+	}
+}

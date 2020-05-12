@@ -1,0 +1,42 @@
+<ion-header  class="bg-transparent">
+    <ion-navbar>
+        <ion-title>
+            <span class="text-white"></span>
+            <ion-icon name="return-right" class="text-white" (click)="enterReferral()">
+            </ion-icon>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="banner">
+        <img src="assets/imgs/menu-bg2.jpg">
+    </div>
+    <div padding-left padding-right>
+        <ion-card class="bg-theme">
+            <ion-card-content text-center>
+                <p class="text-white">{{"ur_ref_code" | translate}}</p>
+                <h6 class="text-white" (click)="copyCode()">{{userMe.refer_code}}</h6>
+            </ion-card-content>
+        </ion-card>
+        <div padding-left padding-right padding-top padding>
+            <br>
+            <h4 class="text-theme">{{"refer_earn" | translate}}</h4>
+            <p class="text-drack">{{"earn_text" | translate}} {{currency}} {{refer_amount}}</p>
+        </div>
+        <ion-row>
+            <ion-col col-3 text-center padding (click)="shareFacebook()">
+                <img src="assets/imgs/fb.png">
+            </ion-col>
+            <ion-col col-3 text-center padding padding (click)="shareWhatsapp()">
+                <img src="assets/imgs/wpp.png">
+            </ion-col>
+            <ion-col col-3 text-center padding (click)="shareTwitter()">
+                <img src="assets/imgs/tw.png">
+            </ion-col>
+            <ion-col col-3 text-center padding (click)="share()">
+                <img src="assets/imgs/more.png">
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>

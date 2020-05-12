@@ -1,0 +1,34 @@
+<ion-header class="bg-theme">
+    <ion-navbar>
+        <ion-title class="text-center" text-uppercase>
+            <span>{{"chats" | translate}}</span>
+            <ion-icon name="md-search" class="text-white" (click)="enableSearch()">
+            </ion-icon>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+    <ion-searchbar *ngIf="searchEnabled" (ionInput)="getItems($event)" placeholder="{{'search_chat' | translate}}">
+    </ion-searchbar>
+    <div class="empty-view" *ngIf="(!chats || !chats.length)">
+        <div style="text-align:center">
+            <img src="assets/imgs/ic_nochat.png" alt="no offers" />
+            <span style="color:#9E9E9E; font-weight:bold;">
+                {{'empty_chats' | translate}}
+            </span>
+        </div>
+    </div>
+    <ion-item *ngFor="let chat of chats" (click)="chatscreen(chat)">
+        <ion-avatar item-start>
+            <img *ngIf="chat.chatImage && chat.chatImage.length" data-src="{{chat.chatImage}}">
+            <img *ngIf="!chat.chatImage || !chat.chatImage.length" src="assets/imgs/empty_dp.png">
+            <ion-badge *ngIf="!chat.isRead" color="danger"></ion-badge>
+        </ion-avatar>
+        <h2 class="text-theme">{{chat.chatName}}</h2>
+        <p>{{chat.lastMessage}}</p>
+        <ion-note item-end>
+            <span class="time">{{chat.timeDiff}}</span>
+        </ion-note>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header class="bg-theme">
+	<ion-navbar>
+		<ion-title>{{"help" | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+	<p class="text-light" padding>{{"help" | translate}}</p>
+	<ion-card *ngFor="let faq of faqs" [ngClass]="faq.id == curFaqId ? 'active' : '' " (click)="expandFaq(faq)">
+		<ion-card-header>
+			<h1>
+				<strong>{{faq.title}}</strong>
+				<ion-icon name="ios-arrow-down-outline" class="text-light"></ion-icon>
+			</h1>
+		</ion-card-header>
+		<ion-card-content class="text-light">
+			<small>{{faq.short_description}}</small>
+			<p>{{faq.description}}</p>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

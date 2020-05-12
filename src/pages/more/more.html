@@ -1,0 +1,93 @@
+<ion-header class="bg-theme">
+	<ion-navbar>
+		<ion-title>{{"more" | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+	<ion-list no-lines class="profile">
+		<ion-item *ngIf="user">
+			<ion-avatar item-start>
+				<img *ngIf="user && user.image_url" data-src="{{user.image_url}}">
+				<img *ngIf="!user || !user.image_url" src="assets/imgs/empty_dp.png">
+			</ion-avatar>
+			<div class="name">
+				<h2>{{user.name}}</h2>
+				<p class="d-flex">
+					<span class="rating_icons">
+						<ion-icon [ngClass]="(user.ratings >= 1) ? 'text-yellow' : ''" name="ios-star"></ion-icon>
+						<ion-icon [ngClass]="(user.ratings >= 2) ? 'text-yellow' : ''" name="ios-star"></ion-icon>
+						<ion-icon [ngClass]="(user.ratings >= 3) ? 'text-yellow' : ''" name="ios-star"></ion-icon>
+						<ion-icon [ngClass]="(user.ratings >= 4) ? 'text-yellow' : ''" name="ios-star"></ion-icon>
+						<ion-icon [ngClass]="(user.ratings >= 5) ? 'text-yellow' : ''" name="ios-star"></ion-icon>
+					</span>
+					({{user.ratingscount}} {{"reviews" | translate}})
+				</p>
+			</div>
+		</ion-item>
+	</ion-list>
+
+	<ion-list no-lines>
+		<button ion-item (click)="profileDetail()">
+			<ion-avatar item-start>
+				<ion-icon name="md-person"></ion-icon>
+			</ion-avatar>
+			{{"my_profile" | translate}}
+		</button>
+
+		<!--
+		<button ion-item (click)="reviews()">
+			<ion-avatar item-start>
+				<ion-icon name="ios-star"></ion-icon>
+			</ion-avatar>
+			{{"my_reviews" | translate}}
+		</button>
+-->
+
+		<button ion-item (click)="notification()">
+			<ion-avatar item-start>
+				<ion-icon name="md-notifications"></ion-icon>
+			</ion-avatar>
+			{{"notification" | translate}}
+		</button>
+
+		<button ion-item (click)="terms()">
+			<ion-avatar item-start>
+				<ion-icon name="md-paper"></ion-icon>
+			</ion-avatar>
+			{{"t&c" | translate}}
+		</button>
+		<button ion-item (click)="earn()">
+			<ion-avatar item-start>
+				<ion-icon name="md-share"></ion-icon>
+			</ion-avatar>
+			{{"refer_earn" | translate}}
+		</button>
+		<button ion-item (click)="ratevroom()">
+			<ion-avatar item-start>
+				<ion-icon name="md-thumbs-up"></ion-icon>
+			</ion-avatar>
+			{{"rate_vroom" | translate}}
+		</button>
+
+		<button ion-item (click)="change_language()">
+			<ion-avatar item-start>
+				<ion-icon name="md-globe"></ion-icon>
+			</ion-avatar>
+			{{"change_language" | translate}}
+		</button>
+
+		<button ion-item (click)="help()">
+			<ion-avatar item-start>
+				<ion-icon name="md-alert"></ion-icon>
+			</ion-avatar>
+			{{"help" | translate}}
+		</button>
+	</ion-list>
+	<ion-list no-lines>
+		<button ion-item (click)="alertLogout()" text-center>
+			<h2 class="text-theme"><strong>{{"logout" | translate}}</strong></h2>
+		</button>
+
+	</ion-list>
+</ion-content>

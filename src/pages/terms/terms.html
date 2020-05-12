@@ -1,0 +1,20 @@
+<ion-header class="bg-transparent">
+    <ion-navbar>
+        <ion-title text-uppercase><span class="text-white">{{"t&c" | translate}}</span></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="banner">
+        <div class="banner_img">
+            <img src="assets/imgs/banner_img.png" alt="logo">
+        </div>
+        <div class="logo">
+            <img src="assets/imgs/logo.png" alt="logo">
+        </div>
+    </div>
+    <div class="bg-white text">
+        <h4 class="text-theme">{{"t&v" | translate}}</h4>
+        <p class="text-dark" [innerHTML]="terms"></p>
+    </div>
+</ion-content>

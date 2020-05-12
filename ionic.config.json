@@ -1,0 +1,7 @@
+{
+  "name": "vroom",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

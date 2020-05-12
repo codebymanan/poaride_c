@@ -1,0 +1,125 @@
+<ion-header class="bg-theme">
+	<ion-navbar>
+		<ion-title class="text-center" text-uppercase>{{"my_ride" | translate}}</ion-title>
+	</ion-navbar>
+	<div padding-left padding-right>
+		<ion-segment [(ngModel)]="ride" (ionChange)="onSegmentChange()">
+			<ion-segment-button value="Pending">
+				{{"upcoming_rides" | translate}}
+			</ion-segment-button>
+			<ion-segment-button value="History">
+				{{"ride_history" | translate}}
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+</ion-header>
+
+<ion-content class="bg-light">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="{{'pull_refresh' | translate}}"
+			refreshingSpinner="circles" refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
+	<div class="empty-view" *ngIf="!loadingShown && (!toShow || !toShow.length)">
+		<div style="text-align:center">
+			<img src="assets/imgs/empty_appointment.png" alt="no offers" />
+			<span style="color:#9E9E9E; font-weight:bold;">{{'no_rides_to_show' | translate}}</span>
+		</div>
+	</div>
+	<div>
+		<ion-list>
+			<ion-card *ngFor="let ap of toShow; let i = index">
+				<ion-item>
+					<ion-avatar item-start (click)="riderprofile(ap)">
+						<img *ngIf="ap.provider && ap.provider.user.image_url"
+							data-src="{{ap.provider.user.image_url}}">
+						<img *ngIf="!ap.provider || !ap.provider.user || !ap.provider.user.image_url"
+							src="assets/imgs/empty_dp.png">
+					</ion-avatar>
+					<div class="name">
+						<h2 class="d-flex">
+							<div (click)="riderprofile(ap)">
+								{{ap.provider.user.name}}
+								<ion-icon *ngIf="ap.provider.is_verified == 1" name="ios-checkmark-circle"
+									class="text-theme">
+								</ion-icon>
+							</div>
+							<span class="end">
+								<small> {{currency}} {{ap.price}}</small>
+							</span>
+						</h2>
+
+						<p class="d-flex" (click)="riderprofile(ap)">
+							<span class="ratings_icons">
+								<ion-icon name="ios-star" [ngClass]="ap.provider.user.ratings>=1 ? 'text-yellow' : ''">
+								</ion-icon>
+								<ion-icon name="ios-star" [ngClass]="ap.provider.user.ratings>=2 ? 'text-yellow' : ''">
+								</ion-icon>
+								<ion-icon name="ios-star" [ngClass]="ap.provider.user.ratings>=3 ? 'text-yellow' : ''">
+								</ion-icon>
+								<ion-icon name="ios-star" [ngClass]="ap.provider.user.ratings>=4 ? 'text-yellow' : ''">
+								</ion-icon>
+								<ion-icon name="ios-star" [ngClass]="ap.provider.user.ratings>=5 ? 'text-yellow' : ''">
+								</ion-icon>
+							</span>
+							&nbsp;&nbsp;&nbsp;
+							({{ap.provider.user.ratingscount}} {{"reviews" | translate}})
+
+							<span class="end">{{ap.seats}} {{"seats" | translate}}</span>
+						</p>
+					</div>
+					<ion-icon item-end *ngIf="ride == 'Pending' && (ap.status == 'pending' || ap.status == 'accepted')" class="zmdi zmdi-close" text-end
+						(click)="cancelJob(i)">
+					</ion-icon>
+					<ion-icon item-end *ngIf="ride == 'Pending' && (ap.status == 'onway' || ap.status == 'ongoing')" class ="share_icon" name="share-alt" text-end
+						(click)="shareJob(i)">
+					</ion-icon>
+				</ion-item>
+				<ion-card-content>
+					<div class="status"><img src="assets/imgs/{{ap.status}}.png"></div>
+					<div class="ride-detail" (click)="rideMap(ap)">
+						<p>
+							<span class="icon-location bg-theme"></span>
+							<span class="time"> </span>
+							{{ap.address_from}}
+						</p>
+						<p>
+							<span class="icon-location bg-redish"></span>
+							<span class="time">&nbsp;&nbsp;</span>
+							{{ap.address_to}}
+						</p>
+					</div>
+					<ion-row class="ride_info">
+						<ion-col class="detail-text" col>
+							<div text-start>
+								<h2>{{ap.ride_on_time}}, {{ap.ride_on_date}} &nbsp;&nbsp;
+									{{ap.provider.vehicle_details_array[0]}} {{ap.provider.vehicle_details_array[1]}} |
+									{{ap.provider.vehicle_details_array[2]}}
+								</h2>
+							</div>
+						</ion-col>
+						<ion-col *ngIf="(ap.status=='complete' && ap.myRating == -1) || (ap.status!='rejected' && ap.status!='cancelled' && ap.status!='complete')" col-4 center text-center class="btn_box">
+							<button *ngIf="ap.status=='complete' && ap.myRating == -1"
+								class="btn bg-yellow rounded full text-white" (click)="raterider(ap)">
+								{{"rate_now" | translate}}
+							</button>
+
+							<button *ngIf="ap.status!='rejected' && ap.status!='cancelled' && ap.status!='complete'"
+								class="btn bg-theme rounded full text-white" (click)="chatting(ap)">
+								{{"massage" | translate}}
+							</button>
+
+							<!-- <button *ngIf="(ap.status=='rejected') || (ap.status=='cancelled')"
+								class="btn bg-theme rounded full text-white">
+								{{'job_'+ap.status | translate}}
+							</button> -->
+						</ion-col>
+					</ion-row>
+				</ion-card-content>
+			</ion-card>
+		</ion-list>
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+			<ion-infinite-scroll-content></ion-infinite-scroll-content>
+		</ion-infinite-scroll>
+	</div>
+</ion-content>

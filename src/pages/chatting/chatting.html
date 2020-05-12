@@ -1,0 +1,46 @@
+<ion-header class="bg-theme">
+    <ion-navbar>
+        <ion-title>{{chat.chatName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content #content padding class="chat-bg">
+    <div class="cb">
+        <div *ngFor="let msg of messages"
+            [ngClass]="(chat.myId == msg.senderId) ? 'chat chat-right bg-white text-dark' : 'chat chat-left bg-theme text-white'"
+            text-right padding float-right>
+            <p>{{msg.body}}</p>
+            <p><small>{{msg.timeDiff}}</small></p>
+        </div>
+    </div>
+    <!--
+<div class="cb">
+  <div text-left padding float-left>
+      <p>Hey mate !!</p>
+      <p>Yes, tell me your query bro!</p>
+      <p><small>12:33 pm</small></p>
+  </div>
+</div>
+-->
+</ion-content>
+<ion-footer no-border>
+    <ion-toolbar>
+        <div class="fixed-bottom">
+            <ion-row>
+                <ion-col col-10>
+                    <ion-list inset>
+                        <ion-item>
+                            <ion-textarea type="text" [(ngModel)]="newMessageText" placeholder="Type your message">
+                            </ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col col-2 text-center>
+                    <ion-icon name="md-send" class="text-theme" (mousedown)="send(); $event.preventDefault()">
+                    </ion-icon>
+                </ion-col>
+
+            </ion-row>
+        </div>
+    </ion-toolbar>
+</ion-footer>

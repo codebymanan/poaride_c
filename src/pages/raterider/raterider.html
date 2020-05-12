@@ -1,0 +1,61 @@
+<ion-header class="bg-theme">
+	<ion-navbar>
+		<ion-title>{{"rate_driver" | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+	<ion-card class="slip">
+		<div text-center>
+			<h4 class="text-dark">{{"rate_driver_text1" | translate}} </h4>
+			<p class="text-light">{{ap.ride_on}}</p>
+			<h1 class="text-theme">{{currency}} {{ap.price}}</h1>
+			<h4 class="text-dark">{{"rate_driver_text2" | translate}} </h4>
+		</div>
+	</ion-card>
+	<ion-card class="rate">
+		<div text-center>
+			<p>{{"rate_driver_text3" | translate}}</p>
+			<div class="driver">
+				<ion-item class="driver_details">
+					<ion-avatar item-start>
+						<img *ngIf="ap.provider && ap.provider.user.image_url" data-src="{{ap.provider.user.image_url}}">
+						<img *ngIf="!ap.provider || !ap.provider.user || !ap.provider.user.image_url" src="assets/imgs/empty_dp.png">
+					</ion-avatar>
+					<h2>
+						{{ap.provider.user.name}}
+						<ion-icon *ngIf="ap.provider.is_verified == 1" name="ios-checkmark-circle" class="text-theme"></ion-icon>
+					</h2>
+					<p>
+						{{ap.provider.vehicle_details_array[0]}} {{ap.provider.vehicle_details_array[1]}} |
+						{{ap.provider.vehicle_details_array[2]}}
+					</p>
+				</ion-item>
+				<p class="icons">
+					<ion-icon name="ios-star" [ngClass]="rateRequest.rating>=1 ? 'text-yellow' : ''" (click)="setRating(1)">
+					</ion-icon>
+					<ion-icon name="ios-star" [ngClass]="rateRequest.rating>=2 ? 'text-yellow' : ''" (click)="setRating(2)">
+					</ion-icon>
+					<ion-icon name="ios-star" [ngClass]="rateRequest.rating>=3 ? 'text-yellow' : ''" (click)="setRating(3)">
+					</ion-icon>
+					<ion-icon name="ios-star" [ngClass]="rateRequest.rating>=4 ? 'text-yellow' : ''" (click)="setRating(4)">
+					</ion-icon>
+					<ion-icon name="ios-star" [ngClass]="rateRequest.rating==5 ? 'text-yellow' : ''" (click)="setRating(5)">
+					</ion-icon>
+				</p>
+				<div class="form">
+					<ion-list no-lines>
+						<ion-item>
+							<ion-textarea type="text" [(ngModel)]="rateRequest.review" placeholder="Leave a feedback">
+							</ion-textarea>
+						</ion-item>
+					</ion-list>
+				</div>
+				<button margin-top class="btn text-white bg-theme rounded" style="width: 100%;" (click)="submitRating()">
+					{{"submit_rating" | translate}}
+				</button>
+
+			</div>
+		</div>
+	</ion-card>
+</ion-content>

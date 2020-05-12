@@ -1,0 +1,83 @@
+<ion-header class="bg-theme">
+    <ion-navbar>
+        <ion-title>{{"con_ride" | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bh-light">
+    <ion-card>
+        <ion-item>
+            <ion-avatar item-start>
+                <img *ngIf="profile.user && profile.user.image_url" data-src="{{profile.user.image_url}}">
+                <img *ngIf="!profile.user || !profile.user.image_url" src="assets/imgs/empty_dp.png">
+            </ion-avatar>
+            <div class="name">
+                <h2>
+                    {{profile.user.name}}&nbsp;
+                    <ion-icon *ngIf="profile.is_verified == 1" name="ios-checkmark-circle" class="text-theme">
+                    </ion-icon>
+                </h2>
+                <p>
+                    {{profile.vehicle_details_array[0]}} {{profile.vehicle_details_array[1]}} |
+                    {{profile.vehicle_details_array[2]}}
+                </p>
+            </div>
+        </ion-item>
+        <ion-card-content>
+            <div class="ride-detail">
+                <h6 class="text-theme">{{"location" | translate}}</h6>
+                <p>
+                    <small>{{"pick_location" | translate}}</small>
+                    <span class="icon-location bg-theme"></span>
+                    {{profile.pickup_location.address}}
+                </p>
+                <p>
+                    <small>{{"drop_location" | translate}}</small>
+                    <span class="icon-location bg-redish"></span>
+                    {{profile.drop_location.address}}
+                </p>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+            <div class="ride-detail fare_seat_info  no-before">
+                <h6 class="text-theme">{{"date" | translate}} & {{"time" | translate}}</h6>
+                <p>
+                    <small>
+                        {{"date" | translate}}
+                    </small>
+                    <ion-icon class="icon-location zmdi zmdi-calendar-alt"></ion-icon>
+                    {{dateFormatted}}
+                </p>
+                <p>
+                    <small>{{"time" | translate}}</small>
+                    <ion-icon class="zmdi zmdi-time icon-location" ></ion-icon>
+                    {{profile.time_start}}
+                </p>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content>
+            <div class="ride-detail fare_seat_info no-before">
+                <h6 class="text-theme">{{"fare_seat_info" | translate}}</h6>
+                        <p>
+                        <small>{{"fare" | translate}} </small> 
+                        <ion-icon class="zmdi zmdi-assignment-check icon-location" ></ion-icon>
+                        <strong>{{currency}} {{finalPrice}}</strong>
+                        </p>
+            <p>
+                        <small>{{"seats" | translate}}  </small>
+                        <ion-icon class="zmdi zmdi-airline-seat-recline-extra icon-location"></ion-icon>
+                       <strong> {{seats}}</strong>
+               </p>
+                <button class="btn bg-theme text-white rounded" (click)="confirm()"
+                    style="width: 100%;margin-top: 16px;">
+                    {{"con_request" | translate}}
+                </button>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

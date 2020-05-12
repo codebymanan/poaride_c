@@ -1,0 +1,78 @@
+<ion-header class="bg-transparent">
+	<ion-navbar>
+		<ion-title>{{"find_ride" | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="bg-background-img">
+	<div class="container">
+		<ion-card class="search">
+			<ion-card-content class="select_location" (click)="selectLocation(1)">
+				<span class="dot bg-theme"></span>
+				<p *ngIf="locationFrom && locationFrom.name && locationFrom.name.length">{{locationFrom.name}}</p>
+				<p style="color: #999;" *ngIf="!locationFrom || !locationFrom.name || !locationFrom.name.length">
+					{{"ur_location" | translate}}
+				</p>
+			</ion-card-content>
+			<ion-card-content class="select_location" (click)="selectLocation(2)">
+				<span class="dot bg-redish"></span>
+				<p *ngIf="locationTo && locationTo.name && locationTo.name.length">{{locationTo.name}}</p>
+				<p style="color: #999;" *ngIf="!locationTo || !locationTo.name || !locationTo.name.length">
+					{{"whr_2_go" | translate}}</p>
+			</ion-card-content>
+		</ion-card>
+
+		<ion-card class="search">
+			<ion-card-content class="d-flex">
+				<ion-icon name="md-calendar" text-start></ion-icon>
+				<ion-datetime placeholder="{{'datentime' | translate}}" displayFormat="DD MMM, HH:mm"
+					[(ngModel)]="dateTime">
+				</ion-datetime>
+			</ion-card-content>
+		</ion-card>
+
+		<!--
+		<ion-card class="search">
+			<ion-card-content class="d-flex">
+				<ion-icon name="md-time"></ion-icon>
+				<ion-datetime placeholder="{{'time' | translate}}" displayFormat="h:mm A" pickerFormat="h mm A"> </ion-datetime>
+			</ion-card-content>
+		</ion-card>
+-->
+
+		<ion-card class="search">
+			<ion-card-content class="d-flex">
+				<ion-icon name="md-person"></ion-icon>
+				<ion-select [(ngModel)]="seats" placeholder="{{'select_number_of_seats' | translate}}">
+					<ion-option value="1">1</ion-option>
+					<ion-option value="2">2</ion-option>
+					<ion-option value="3">3</ion-option>
+					<ion-option value="4">4</ion-option>
+					<ion-option value="5">5</ion-option>
+					<ion-option value="6">6</ion-option>
+					<ion-option value="7">7</ion-option>
+				</ion-select>
+			</ion-card-content>
+		</ion-card>
+		<!--
+		<ion-card class="search">
+			<ion-card-content>
+				<div class="seats-tag">
+					<ion-icon name="remove-circle" (click)="seatDecrement()"></ion-icon>
+					<strong>{{seats}} {{"seats" | translate}}</strong>
+					<ion-icon name="add-circle" (click)="seatIncrement()"></ion-icon>
+				</div>
+			</ion-card-content>
+		</ion-card>
+-->
+	</div>
+	<!--		<button (click)="listride()" class="btn rounded bg-white text-theme" style="width: 100%">{{"list" | translate}}</button>-->
+</ion-content>
+
+<ion-footer no-border>
+	<div class="container">
+		<button ion-button full class="bg-theme text-white btn rounded" (click)="listride()">
+			{{"saerch_rides" | translate}}
+		</button>
+	</div>
+</ion-footer>

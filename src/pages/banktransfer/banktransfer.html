@@ -1,0 +1,43 @@
+<ion-header class="bg-theme">
+    <ion-navbar>
+        <ion-title>{{'send_to_bank' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="">
+    <div class="banner bg-light">
+        <h2>{{'avsilble_wallet_blance' | translate}}</h2>
+        <h1>{{currency}} {{balance}}</h1>
+    </div>
+    <ion-list class="form">
+        <h2>{{'enter_bank_info' | translate}}</h2>
+        <div class="form_container">
+            <ion-item>
+                <ion-label>{{"bank_name" | translate}}</ion-label>
+                <ion-input type="text" text-end [(ngModel)]="bankDetail.bank_name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>{{"account_number" | translate}}</ion-label>
+                <ion-input type="number" text-end [(ngModel)]="bankDetail.account_number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>{{"bank_code" | translate}}</ion-label>
+                <ion-input type="text" text-end [(ngModel)]="bankDetail.ifsc"></ion-input>
+            </ion-item>
+        </div>
+    </ion-list>
+    <ion-list class="form">
+        <h2>{{'enter_amount_transfer' | translate}}</h2>
+        <div class="form_container">
+            <ion-item>
+                <ion-label>{{"enter_amount_transfer_in" | translate}}</ion-label>
+                <ion-input type="number" text-end [(ngModel)]="amount"></ion-input>
+            </ion-item>
+        </div>
+    </ion-list>
+</ion-content>
+<ion-footer no-border>
+    <button ion-button full class="bg-theme text-white btn rounded" (click)="confirm()">
+        {{"proceed" | translate}}
+    </button>
+</ion-footer>

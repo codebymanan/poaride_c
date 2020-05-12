@@ -1,0 +1,253 @@
+page-myride {
+	.header .toolbar {
+		.toolbar-content {
+			position: absolute;
+			left: 0;
+			width: 100%;
+
+			.title .toolbar-title {
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+
+	.card {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+
+		ion-item {
+			align-items: flex-start;
+			.name {
+				width: calc(100% - 0px);
+
+				h2 {
+					font-size: 1.3rem;
+					font-weight: 600;
+					//align-items: flex-start !important;
+
+					ion-icon {
+						margin-left: 5px;
+					}
+
+					span {
+						display: flex;
+						align-items: center;
+
+						small {
+							color: $theme-color;
+							font-size: 1.3rem;
+						}
+
+						ion-icon {
+							color: $text-light;
+							margin: 0;
+							font-size: 2rem;
+							min-width: 16px;
+						}
+					}
+				}
+
+				p {
+					//margin: 0 -5px;
+					max-width: calc(100% - 0px);
+					font-size: 1rem;
+					span {
+						&.ratings_icons {
+						//	margin: 0 5px;
+							ion-icon {
+								margin-left: 5px;
+								font-size: 1.25rem;
+								margin: 0;
+								color: $text-light;
+
+								&.text-yellow {
+									color: $yellow-color;
+								}
+							}
+						}
+						&.end{
+							font-weight: 500;
+							font-size: 1.1rem;
+						}
+					}
+				}
+
+			}
+
+			.more {
+				width: 65px;
+				display: inline-block;
+
+				h2 {
+					font-size: 1.4rem;
+					font-weight: 600;
+					color: $theme-color;
+					display: flex;
+
+					ion-icon {
+						margin-left: 5px;
+						font-size: 2rem;
+						margin-left: auto;
+						color: $theme-color;
+					}
+				}
+			}
+
+			p {
+				font-size: 1.1rem;
+				color: $text-light;
+				font-weight: 400;
+			}
+			ion-icon{
+				&[item-end]{
+				margin: 0;
+				color: $text-light;
+				margin: 0;
+				font-size: 2rem;
+				min-width: 16px;
+	    		 min-height: unset;
+	     	 position: relative;
+         	     top: 14px;
+				}
+				&.share_icon{
+					color: $theme-color;
+					
+				}
+			}
+		}
+	}
+
+	ion-card-content {
+		padding-left: 47px !important;
+		position: relative;
+
+		.ride-detail {
+			position: relative;
+			margin-bottom: 1rem;
+
+			p {
+				font-size: 1.2rem;
+				padding-left: 10px;
+				position: relative;
+				color: $text-dark;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100%;
+				font-weight: 500;
+
+				.time {
+					width: 10px;
+					display: inline-block;
+					text-align: center;
+					font-weight: 400;
+					color: $text-light;
+
+				}
+
+				.icon-location {
+					position: absolute;
+					left: 0px;
+					top: 0;
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					display: inline-block;
+					bottom: 0;
+					margin: auto;
+				}
+			}
+
+			&::before {
+				content: '';
+				display: block;
+				width: 1px;
+				height: 20px;
+				background: $text-dark;
+				position: absolute;
+				left: 5px;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+		}
+
+		.detail-text {
+			height: 4.5rem;
+			font-size: 1rem;
+			color: $text-light;
+			text-transform: none;
+
+			h2 {
+				color: $theme-color;
+				font-size: 1.1rem;
+				font-weight: 600;
+				line-height: 18px;
+			}
+		}
+
+		.full.btn {
+			text-transform: capitalize;
+			letter-spacing: 0px;
+			font-weight: 400;
+			height: 35px;
+			font-size: 1rem;
+			width: 100%;
+		}
+
+		.status {
+			display: block;
+			width: 26px;
+			height: 100px;
+			position: absolute;
+			left: 0;
+			bottom: 8px;
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	.col {
+		padding-left: 0;
+		padding-right: 0;
+
+		.rating_box {
+			width: 72px;
+			margin-left: auto;
+		}
+	}
+
+	.empty-view {
+		width: 200px;
+		margin: auto;
+		height: 200px;
+		top: 10%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 10%;
+
+		img {
+			width: 100px;
+			margin: auto;
+		}
+
+		span {
+			display: block;
+			text-align: center;
+		}
+
+		button {
+			margin-top: 50px;
+
+			span {
+				display: unset !important;
+			}
+		}
+	}
+
+}

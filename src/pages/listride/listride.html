@@ -1,0 +1,128 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{"find_ride" | translate}}</ion-title>
+	</ion-navbar>
+
+
+	<div class="banner d-flex">
+		<ion-icon class="zmdi zmdi-swap-vertical" text-start></ion-icon>
+		<div class="text_box">
+			<h2 class="d-flex"><span class="from">{{loc_name_from}}</span> <span class="end">
+					<ion-icon class="zmdi zmdi-calendar-alt" text-start></ion-icon>
+					{{dateFormatted}}
+				</span>
+			</h2>
+			<h2 class="d-flex"><span class="to">{{loc_name_to}}</span> <span class="end">
+					<ion-icon class="zmdi zmdi-time" text-start></ion-icon>
+					{{day}}, {{time}}
+				</span>
+			</h2>
+		</div>
+	</div>
+
+</ion-header>
+
+<ion-content class="bg-light">
+	<!--
+	<ion-row class="center-align bg-white flow-ride">
+		<ion-col col-5>
+			<h2>{{dateFormatted}}</h2>
+			<span>{{loc_name_from}}</span>
+		</ion-col>
+		<ion-col col-2 text-center>
+			<img src="assets/imgs/arrow.jpg">
+		</ion-col>
+		<ion-col col-5>
+			<h2>{{day}}, {{time}}</h2>
+			<span>{{loc_name_to}}</span>
+		</ion-col>
+	</ion-row>
+-->
+	<div class="empty-view" *ngIf="!isLoading && (!rides || !rides.length)">
+		<div style="text-align:center">
+			<img src="assets/imgs/nono.png" alt="no offers" />
+			<span style="color:#9E9E9E; font-weight:bold;">{{'no_rides_to_show' | translate}}</span>
+		</div>
+	</div>
+
+	<ion-list>
+		<ion-card *ngFor="let ride of rides" (click)="riderprofile(ride)">
+			<ion-item>
+				<ion-avatar item-start>
+					<img *ngIf="ride.user && ride.user.image_url" data-src="{{ride.user.image_url}}">
+					<img *ngIf="!ride.user || !ride.user.image_url" src="assets/imgs/empty_dp.png">
+				</ion-avatar>
+				<div class="name">
+					<h2 class="d-flex">
+						{{ride.user.name}}
+						<ion-icon *ngIf="ride.is_verified == 1" name="ios-checkmark-circle" class="text-theme"> </ion-icon>
+						<span class="end">{{currency}} {{ride.price}}</span>
+					</h2>
+					<h3 class="d-flex">
+						<span class="rating_icons">
+							<ion-icon name="ios-star" [ngClass]="(ride.user.ratings >= 1) ? 'text-yellow' : ''"></ion-icon>
+							<ion-icon name="ios-star" [ngClass]="(ride.user.ratings >= 2) ? 'text-yellow' : ''"></ion-icon>
+							<ion-icon name="ios-star" [ngClass]="(ride.user.ratings >= 3) ? 'text-yellow' : ''"></ion-icon>
+							<ion-icon name="ios-star" [ngClass]="(ride.user.ratings >= 4) ? 'text-yellow' : ''"></ion-icon>
+							<ion-icon name="ios-star" [ngClass]="(ride.user.ratings >= 5) ? 'text-yellow' : ''"></ion-icon>
+						</span>
+						({{ride.user.ratingscount}} {{"reviews" | translate}})
+						<span class="end">
+							{{ride.seats_available}} {{"seats_left" | translate}}
+						</span>
+					</h3>
+					<!--
+					<p>
+						{{ride.vehicle_details_array[0]}} {{ride.vehicle_details_array[1]}} |
+						{{ride.vehicle_details_array[2]}}
+					</p>
+-->
+				</div>
+				<!--
+				<div class="more">
+					<h2 class="text-light">
+
+					</h2>
+					<p class="text-light">({{ride.user.ratingscount}} {{"reviews" | translate}})</p>
+				</div>
+-->
+			</ion-item>
+			<ion-card-content>
+				<div class="ride-detail">
+					<p *ngFor="let location of ride.locationsToShow; index as i">
+						<span *ngIf="i == 0" class="icon-location bg-theme"></span>
+						<span *ngIf="i != 0 && i != ride.locationsToShow.length - 1" class="icon-location bg-yellow"></span>
+						<span *ngIf="i == ride.locationsToShow.length - 1" class="icon-location bg-redish"></span>
+
+						<span *ngIf="i == 0" class="time">&nbsp;</span>
+						<span *ngIf="i != 0 && i != ride.locationsToShow.length - 1" class="time">&nbsp;</span>
+						<span *ngIf="i == ride.locationsToShow.length - 1" class="time">&nbsp;</span>
+
+						{{location.address}}
+					</p>
+				</div>
+				<ion-row class="center-align">
+					<ion-col col-3 class="detail-text text-theme">
+					{{ride.time_start}}
+					</ion-col>
+					<!-- <ion-col *ngIf="ride.vehicle_details_array[3] == 'Availible'" col-2 class="detail-text text-light">
+						AC
+					</ion-col>
+					<ion-col *ngIf="ride.vehicle_details_array[3] == 'Unavailable'" col-2 class="detail-text text-light">
+						Non AC
+					</ion-col> -->
+					<ion-col col-5 class="detail-text text-theme">
+						{{ride.vehicle_details_array[0]}} {{ride.vehicle_details_array[1]}} |
+						{{ride.vehicle_details_array[2]}}
+					</ion-col>
+					<ion-col center text-center col-4 text-right style="margin-left: auto;">
+						<button class="btn bg-theme rounded full text-white">{{"req_ride" | translate}}</button>
+					</ion-col>
+				</ion-row>
+			</ion-card-content>
+		</ion-card>
+	</ion-list>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>
