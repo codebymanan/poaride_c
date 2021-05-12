@@ -73,7 +73,7 @@
     "cordova-plugin-x-socialsharing": "5.1.8",
     "cordova.plugins.diagnostic": "4.0.10",
     "firebase": "^7.1.0",
-    "grpc": "^1.24.2",
+    "grpc": "^1.24.9",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "javascript-time-ago": "^1.0.32",
