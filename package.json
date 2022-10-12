@@ -49,7 +49,7 @@
     "@types/google-maps": "^3.2.0",
     "@types/googlemaps": "3.38.1",
     "call-number": "1.0.1",
-    "cordova-android": "7.1.4",
+    "cordova-android": "11.0.0",
     "cordova-clipboard": "^1.2.1",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-plugin-badge": "0.8.8",
